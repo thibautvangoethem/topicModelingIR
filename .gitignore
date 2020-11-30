@@ -149,3 +149,6 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
+
+# don't include the data
+data/news_dataset.csv
