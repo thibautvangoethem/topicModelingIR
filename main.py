@@ -26,6 +26,8 @@ def simpleDataReader():
         for row in reader:
             data.append((sanitiseData(row["title"])))
     return data
+
+
 def sanitiseData(data):
 
     splitted=data.split(" ")
