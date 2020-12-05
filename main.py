@@ -31,12 +31,15 @@ def simpleDataReader():
 def sanitiseData(data):
 
     splitted=data.split(" ")
-    # TODO remove possessive 's
-    removedStopWord = [removeNonAlphabet.sub('', word).lower() for word in splitted if word.lower() not in stopwords]
+    removedStopWord = [removeNonAlphabet.sub('', removePossessive(word)).lower() for word in splitted if word.lower() not in stopwords]
 
     wordSet.update(removedStopWord)
     return removedStopWord
 
+def removePossessive(word):
+    word=word.replace("'s", '')
+    word=word.replace("’s", '')
+    return word
 
 if __name__=="__main__":
     data = simpleDataReader()[:10]
@@ -68,7 +71,7 @@ if __name__=="__main__":
             initialCorpus[RowIndex, columnIndex]+=1
 
 
-    print("temp")
+    print(len(wordSet))
     # Here we need to implement the actual LDA thing
         # https://towardsdatascience.com/latent-dirichlet-allocation-lda-9d1cd064ffa2
     # https://towardsdatascience.com/light-on-math-machine-learning-intuitive-guide-to-latent-dirichlet-allocation-437c81220158
