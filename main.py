@@ -3,10 +3,10 @@ import numpy as np
 from scipy.sparse import csr_matrix,lil_matrix,dok_matrix
 import re
 from sklearn.decomposition import LatentDirichletAllocation
-LDA = LatentDirichletAllocation(n_components=5, random_state=42)
+from LDA import LDA
+libraryLDA = LatentDirichletAllocation(n_components=5, random_state=42)
 # https://stackoverflow.com/questions/1276764/stripping-everything-but-alphanumeric-chars-from-a-string-in-python
 removeNonAlphabet=re.compile('[\W_]+', re.UNICODE)
-amountOfdocuments=0
 wordSet=set()
 
 
@@ -55,7 +55,7 @@ if __name__=="__main__":
     # https://mimno.infosci.cornell.edu/papers/schofield_tacl_2016.pdf
     documentSize = len(data)
     amountOfWords=len(wordSet)
-
+    docwordList=list()
     wordToMatrixColumnDict=dict()
     initialCorpus=dok_matrix((documentSize,amountOfWords),dtype=np.int)
     currentColumn=0
@@ -75,3 +75,4 @@ if __name__=="__main__":
     # Here we need to implement the actual LDA thing
         # https://towardsdatascience.com/latent-dirichlet-allocation-lda-9d1cd064ffa2
     # https://towardsdatascience.com/light-on-math-machine-learning-intuitive-guide-to-latent-dirichlet-allocation-437c81220158
+    tempLDA=LDA([1/10]*topicSize,[1/10000]*amountOfWords,documentSize,amountOfWords)
