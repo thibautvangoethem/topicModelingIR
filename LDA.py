@@ -3,12 +3,12 @@ from numpy.random import dirichlet
 from random import choices
 from scipy.sparse import csr_matrix,lil_matrix,dok_matrix
 
-
 def weightsToCumWeights(weights):
     current_total = 0.0
     for i in range(len(weights)):
         current_total += weights[i]
         weights[i] = current_total
+    return weights
 
 
 def LDA(alpha, beta, nb_documents, words_per_document):
