@@ -36,28 +36,45 @@ def sanitiseData(data):
     wordSet.update(removedStopWord)
     return removedStopWord
 
+
 def removePossessive(word):
     word=word.replace("'s", '')
     word=word.replace("’s", '')
     return word
 
+
 def removeCommonWords(documents):
-    wordlist=dict()
+    wordlist = dict()
+    nb_document_per_word = dict()
     for document in documents:
+        words_in_document = set()
         for word in document:
             if word in wordlist:
-                wordlist[word]+=1
+                wordlist[word] += 1
+                if word not in words_in_document:
+                    nb_document_per_word[word] += 1
             else:
-                wordlist[word]=1
+                wordlist[word] = 1
+                nb_document_per_word[word] = 1
+            words_in_document.add(word)
     sorted_words = sorted(wordlist.items(), key=lambda x: x[1], reverse=True)
-    toremove=list()
+    toremove = set()
+    unique_words = 0
+    for word, frequentie in nb_document_per_word.items():
+        if frequentie <= 2:
+            toremove.add(word)
+            unique_words += 1
+    print("removed %d unique words" % unique_words)
+
     # remove top 1 percent of words
-    new_document=list()
+    new_document = list()
     for word in range(round(len(wordlist)*0.05)):
-        toremove.append(sorted_words[word][0])
+        toremove.add(sorted_words[word][0])
     for document in documents:
-        new_document.append(list(set(document).difference(toremove)))
-    return new_document
+        #new_document.append(list(set(document).difference(toremove)))
+        new_document.append([word for word in document if word not in toremove])
+
+    return new_document, toremove
 
 
 def print_top_words(model, feature_names, n_top_words):
@@ -72,7 +89,8 @@ def print_top_words(model, feature_names, n_top_words):
 if __name__ == "__main__":
     data = simpleDataReader()
     print("data read, start removing common words")
-    data = removeCommonWords(data)
+    data, removed = removeCommonWords(data)
+    wordSet = wordSet - removed
     print("common words removed, start building corpus")
     topicSize = 15
     # Don't know this one yet
