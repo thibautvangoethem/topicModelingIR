@@ -7,12 +7,15 @@ import math
 # http://www.arbylon.net/publications/text-est2.pdf#equation.1.5.78
 removeNonAlphabet=re.compile('[\W_]+', re.UNICODE)
 wordSet=set()
-
+random.seed(0)
 alpha=1/10
 beta=1/10000
 cut_common_word_percentage=0.10
-# stops the gibs sampling after less than this amount is sampled
-switched_word_cutoff=1000
+# stops the gibs sampling after less than this amount of topics have been changed since last sample
+switched_word_cutoff=.95
+
+# This list will be later used to take a subsection froma nd randomly choose an index according to weights
+index_list=list()
 
 def readStopword():
     with open('data/stopwords.txt',"r") as stopFile:
@@ -47,26 +50,46 @@ def removePossessive(word):
     word=word.replace("’s", '')
     return word
 
-def removeCommonWords(documents):
-    wordlist=dict()
+wordlist=dict()
+
+def removeCommonAndUniqueWords(documents):
+    docsets=list()
     for document in documents:
+        docset=set()
         for word in document:
             if word in wordlist:
                 wordlist[word]+=1
             else:
                 wordlist[word]=1
+            docset.add(word)
+        docsets.append(docset)
     sorted_words = sorted(wordlist.items(), key=lambda x: x[1], reverse=True)
     toremove=set()
     # remove top 1 percent of words
     new_document=list()
     for word in range(round(len(wordlist)*cut_common_word_percentage)):
         toremove.add(sorted_words[word][0])
+    # remove words that only occur in one document
+    wordcountDict=dict()
+    for docset in docsets:
+        for word in docset:
+            if word in wordcountDict:
+                wordcountDict[word]+=1
+            else:
+                wordcountDict[word]=0
+    for item in wordcountDict.items():
+        if(item[1]==1):
+            toremove.add(item[0])
+    # actually remove these words
     for document in documents:
         new_document.append([word for word in document if word not in toremove])
     return new_document
 
+
 def gibbsLDA(amount_of_topics,document_list):
     # initialisation
+    for i in range(amount_of_topics):
+        index_list.append(i)
     # Create empty count lists
     document_topic_count=[0]*len(document_list)
     document_topic_sum=[0]*len(document_list)
@@ -81,8 +104,10 @@ def gibbsLDA(amount_of_topics,document_list):
     print("starting sampling")
     #gibbs sampling
     finished=False
-    switched=100000
-    while switched > switched_word_cutoff:
+    prev_switched=0
+    switched=0
+    while prev_switched==0 or switched/prev_switched<switched_word_cutoff:
+        prev_switched=switched
         switched = corpusGibbsSamplePass(amount_of_topics, document_list, document_topic_count, document_topic_sum,
                                      document_word_to_topic_matrix, topic_term_count, topic_term_sum)
         print("switched "+str(switched)+" word topics")
@@ -94,7 +119,7 @@ def gibbsLDA(amount_of_topics,document_list):
     for idx, doc in enumerate(document_topic_mixture):
         print("doc %s : topic: %s"%(str(idx),str(doc.index(max(doc)))))
     # second term topic mixture
-    term_topic_mixture = calculateTermTopicMixture(amount_of_topics, topic_term_count)
+    term_topic_mixture = calculateTermTopicMixture(amount_of_topics, topic_term_count,topic_term_sum)
     print("top 20 words per topic")
     for idx, topic in enumerate(term_topic_mixture):
         sorted_topics=sorted(topic.items(), key=lambda x: x[1], reverse=True)
@@ -167,17 +192,18 @@ def corpusGibbsSamplePass(amount_of_topics, document_list, document_topic_count,
     :return: The amount of words whos topic got switched, is used to determine whether the gibbs sampling is converging
     """
     switched = 0
-    topic_denuminator_cache = [None] * amount_of_topics
     for doc_idx, document in enumerate(document_list):
+        topic_denuminator_cache = [None] * amount_of_topics
         switched = gibbsSampleForWordOfDocument(amount_of_topics, doc_idx, document, document_topic_count,
-                                                document_topic_sum, document_word_to_topic_matrix, switched,                                                topic_denuminator_cache, topic_term_count, topic_term_sum)
+                                                document_topic_sum, document_word_to_topic_matrix, switched,
+                                                topic_term_count, topic_term_sum)
         if doc_idx % 10000 == 0:
             print("sampled %s %% of the documents" % (str((doc_idx / len(document_list)) * 100)))
     return switched
 
 
 def gibbsSampleForWordOfDocument(amount_of_topics, doc_idx, document, document_topic_count, document_topic_sum,
-                                 document_word_to_topic_matrix, switched, topic_denuminator_cache, topic_term_count,
+                                 document_word_to_topic_matrix, switched, topic_term_count,
                                  topic_term_sum):
     """
     Does the gibbs sampling process for a single word in a document
@@ -192,12 +218,9 @@ def gibbsSampleForWordOfDocument(amount_of_topics, doc_idx, document, document_t
         document_topic_sum[doc_idx] -= 1
         topic_term_count[word_topic][word] -= 1
         topic_term_sum[word_topic] -= 1
-        if (topic_denuminator_cache[word_topic]) != None:
-            topic_denuminator_cache[word_topic] -= 1
-        # Here comes LDA the formula
 
-        new_topic = sampleNewTopicForWords(amount_of_topics, doc_idx, document_topic_count, topic_denuminator_cache,
-                                           topic_term_count, word)
+        new_topic = sampleNewTopicForWords(amount_of_topics, doc_idx, document_topic_count,document_topic_sum,
+                                           topic_term_count,topic_term_sum, word)[0]
 
         document_word_to_topic_matrix[doc_idx][word_idx] = new_topic
         document_topic_count[doc_idx][new_topic] += 1
@@ -207,8 +230,6 @@ def gibbsSampleForWordOfDocument(amount_of_topics, doc_idx, document, document_t
         else:
             topic_term_count[new_topic][word] = 1
         topic_term_sum[new_topic] += 1
-        if (topic_denuminator_cache[new_topic]) != None:
-            topic_denuminator_cache[new_topic] += 1
         if (word_topic != new_topic):
             switched += 1
         if(topic_term_count[word_topic][word] == 0):
@@ -216,8 +237,8 @@ def gibbsSampleForWordOfDocument(amount_of_topics, doc_idx, document, document_t
     return switched
 
 
-def sampleNewTopicForWords(amount_of_topics, doc_idx, document_topic_count, topic_denuminator_cache,
-                           topic_term_count, word):
+def sampleNewTopicForWords(amount_of_topics, doc_idx, document_topic_count,document_topic_sum,
+                           topic_term_count,topic_term_sum, word):
     """
     Uses the dirichlet distribtion to sample a new topic
     For efficiency we do not constantly recalculate the topic denominators, but chance them according to the removed/added word to a topic
@@ -226,24 +247,23 @@ def sampleNewTopicForWords(amount_of_topics, doc_idx, document_topic_count, topi
     """
     sample_list = list()
     for topic_check in range(amount_of_topics):
-        # Sum of denominator
-        # this sum starts at an epsilon (extremely small amount) because the chance exist that at a certain point the topic we are looking has no terms
-        # If this happens we would first of divide by zero if we initialized on 0
-        # Second it is actual logical that when a topic is empty, then our term must be in that topic, because a word in a topic alone is the perfect 100% cohesion topic
-        # So by intializing on epsilon the division will give an extremely large number eventually giving this topic the highest chance
-        if (topic_denuminator_cache[topic_check]) == None:
-            topic_sum = sys.float_info.epsilon
-            for topic_word in topic_term_count[topic_check].keys():
-                topic_sum += topic_term_count[topic_check][topic_word]
-            topic_sum += beta
-            topic_denuminator_cache[topic_check] = topic_sum
-        # first fraction
-        fraction = (topic_term_count[topic_check].get(word, 0) + beta) / topic_denuminator_cache[topic_check]
-        val = fraction * (document_topic_count[doc_idx][topic_check] + alpha)
+        first_fraction=(document_topic_count[doc_idx][topic_check]+alpha)/(document_topic_sum[doc_idx]+amount_of_topics*alpha)
+        # second fraction
+        second_fraction=0
+        if(word in topic_term_count[topic_check]):
+            second_fraction=(topic_term_count[topic_check][word]+beta)/(topic_term_sum[topic_check]+(len(topic_term_count[topic_check])*beta))
+        else:
+            second_fraction = (beta) / (
+                        topic_term_sum[topic_check] + (len(topic_term_count[topic_check]) * beta))
+        val=first_fraction*second_fraction
+        # fraction = (topic_term_count[topic_check].get(word, 0) + beta) / topic_denuminator_cache[topic_check]
+        # val = fraction * (document_topic_count[doc_idx][topic_check] + alpha)
         sample_list.append(val)
-    return sample_list.index(max(sample_list))
+    normalised_sample_list = [float(i) / sum(sample_list) for i in sample_list]
 
-def calculateTermTopicMixture(amount_of_topics, topic_term_count):
+    return random.choices(index_list,weights=normalised_sample_list)
+
+def calculateTermTopicMixture(amount_of_topics, topic_term_count,topic_term_sum):
     """
     calculate the term topic mixture according to http://www.arbylon.net/publications/text-est2.pdf#equation.1.5.78 formula 81
     :return: the term topic mixutre matrix (K*V) V is here actually a dict containing words to probabilities, this is doen to save memory
@@ -251,12 +271,10 @@ def calculateTermTopicMixture(amount_of_topics, topic_term_count):
     term_topic_mixture = list()
     for topic in range(amount_of_topics):
         term_topic_mixture.append(dict())
-        denominator = 0
+        denominator=topic_term_sum[topic]+amount_of_topics*beta
         for term_idx, term in enumerate(topic_term_count[topic].keys()):
-            denominator += topic_term_count[topic][term]
-        denominator += beta
-        for term_idx, term in enumerate(topic_term_count[topic].keys()):
-            term_topic_mixture[topic][term] = (topic_term_count[topic][term] + beta) / denominator
+            # term_topic_mixture[topic][term] = (topic_term_count[topic][term] + beta) / denominator
+            term_topic_mixture[topic][term] = topic_term_count[topic][term]
     return term_topic_mixture
 
 
@@ -280,5 +298,6 @@ def calculateDocumentTopixMixture(amount_of_topics, document_list, document_topi
 
 if __name__ == "__main__":
     documents = simpleDataReader()
-    documents = removeCommonWords(documents)
-    gibbsLDA(20, documents)
+    documents = removeCommonAndUniqueWords(documents)
+
+    gibbsLDA(15, documents)
