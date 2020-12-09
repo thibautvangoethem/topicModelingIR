@@ -32,7 +32,7 @@ def simpleDataReader():
 def sanitiseData(data, stopwords):
 
     splitted=data.split(" ")
-    removedStopWord = [removeNonAlphabet.sub('', removePossessive(word)).lower() for word in splitted if word.lower() not in stopwords]
+    removedStopWord = [removeNonAlphabet.sub('', removePossessive(word)).lower() for word in splitted if word.lower() not in stopwords and word != ""]
 
     wordSet.update(removedStopWord)
     return removedStopWord
@@ -56,6 +56,7 @@ def read_data():
     documentSize = len(data)
     vocabularySize = len(wordSet)
     wordToIndexDict = dict()
+    indexToWord = []
     initialCorpus = np.ndarray(shape=(n_words, ), dtype=np.int)
     word_documents = np.ndarray(shape=(n_words, ), dtype=np.int)
     currentVocabIndex = 0
@@ -66,23 +67,24 @@ def read_data():
                 wordToIndexDict[word] = currentVocabIndex
                 vocabIndex = currentVocabIndex
                 currentVocabIndex += 1
+                indexToWord.append(word)
             else:
                 vocabIndex = wordToIndexDict[word]
             initialCorpus[currentIndex] = vocabIndex
             word_documents[currentIndex] = DocIndex
             currentIndex += 1
 
-    return initialCorpus, word_documents, wordToIndexDict, documentSize, vocabularySize
+    return initialCorpus, word_documents, indexToWord, documentSize, vocabularySize
 
 
 if __name__ == "__main__":
-    corpus, word_documents, wordToIndexDict, n_documents, n_vocabulary = read_data()
+    corpus, word_documents, indexToWord, n_documents, n_vocabulary = read_data()
     print("data is read, starting training")
     n_words = len(corpus)
     print("total words: ", n_words)
     print("total documents: ", n_documents)
-    n_topics = 10
-    subset_size = 1500
+    n_topics = 20
+    subset_size = 2000
     plates_multiplier = n_words / subset_size
 
     p_topic = nodes.Dirichlet(np.ones(n_topics), plates=(n_documents,), name='p_topic')
@@ -108,7 +110,7 @@ if __name__ == "__main__":
     delay = 1
     forgetting_rate = 0.7
 
-    for n in range(15):
+    for n in range(25):
         print("iteration: ", n)
         subset = np.random.choice(n_words, subset_size)
         Q['words'].observe(corpus[subset])

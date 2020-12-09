@@ -45,4 +45,4 @@ def LDA(alpha, beta, nb_documents, words_per_document):
     return corpus
 
 #LDA([1/3]*3, [1/100]*10, 20, 10)
-LDA([1/10]*10, [1/100000]*10000, 1000, 10)
+#LDA([1/10]*10, [1/100000]*10000, 1000, 10)
