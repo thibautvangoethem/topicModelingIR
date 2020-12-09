@@ -18,14 +18,14 @@ def readStopword():
     with open('data/stopwords.txt',"r") as stopFile:
         stopwords=stopFile.read().split("\n")
         return stopwords
-    return None
+
 
 stopwords=readStopword()
 
 
 def simpleDataReader():
     data=list()
-    with open('data/news_dataset.csv', newline='\n',encoding="utf8") as csvfile:
+    with open('data/news_dataset.csv    ', newline='\n',encoding="utf8") as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             data.append((sanitiseData(row["content"])))
@@ -35,7 +35,9 @@ def simpleDataReader():
 def sanitiseData(data):
 
     splitted=data.split(" ")
-    removedStopWord = [removeNonAlphabet.sub('', removePossessive(word)).lower() for word in splitted if word.lower() not in stopwords]
+    removedStopWord = [removeNonAlphabet.sub('', removePossessive(word)).lower()
+                       for word in splitted if word.lower()
+                       not in stopwords and word != "" and not any(i.isdigit() for i in word)]
 
     wordSet.update(removedStopWord)
     return removedStopWord
@@ -54,13 +56,13 @@ def removeCommonWords(documents):
             else:
                 wordlist[word]=1
     sorted_words = sorted(wordlist.items(), key=lambda x: x[1], reverse=True)
-    toremove=list()
+    toremove=set()
     # remove top 1 percent of words
     new_document=list()
     for word in range(round(len(wordlist)*cut_common_word_percentage)):
-        toremove.append(sorted_words[word][0])
+        toremove.add(sorted_words[word][0])
     for document in documents:
-        new_document.append(list(set(document).difference(toremove)))
+        new_document.append([word for word in document if word not in toremove])
     return new_document
 
 def gibbsLDA(amount_of_topics,document_list):
@@ -80,25 +82,25 @@ def gibbsLDA(amount_of_topics,document_list):
     #gibbs sampling
     finished=False
     switched=100000
-    while switched>switched_word_cutoff:
+    while switched > switched_word_cutoff:
         switched = corpusGibbsSamplePass(amount_of_topics, document_list, document_topic_count, document_topic_sum,
                                      document_word_to_topic_matrix, topic_term_count, topic_term_sum)
         print("switched "+str(switched)+" word topics")
     print("will now calculate mixtures")
-    #first document topic mixture
+    # first document topic mixture
     document_topic_mixture = calculateDocumentTopixMixture(amount_of_topics, document_list, document_topic_count)
 
     print("highest topic chance per document")
-    for idx,doc in enumerate(document_topic_mixture):
+    for idx, doc in enumerate(document_topic_mixture):
         print("doc %s : topic: %s"%(str(idx),str(doc.index(max(doc)))))
-    #second term topic mixture
+    # second term topic mixture
     term_topic_mixture = calculateTermTopicMixture(amount_of_topics, topic_term_count)
     print("top 20 words per topic")
-    for idx,topic in enumerate(term_topic_mixture):
+    for idx, topic in enumerate(term_topic_mixture):
         sorted_topics=sorted(topic.items(), key=lambda x: x[1], reverse=True)
-        print("topic %s"%(idx),end=": ")
+        print("topic %s" % idx, end=": ")
         for term in sorted_topics[:20]:
-            print(term[0] ,end=', ')
+            print(term[0], end=', ')
         print("")
 
 def initializeCountVariables(amount_of_topics, document_list, document_topic_count, document_topic_sum,
@@ -168,9 +170,8 @@ def corpusGibbsSamplePass(amount_of_topics, document_list, document_topic_count,
     topic_denuminator_cache = [None] * amount_of_topics
     for doc_idx, document in enumerate(document_list):
         switched = gibbsSampleForWordOfDocument(amount_of_topics, doc_idx, document, document_topic_count,
-                                                document_topic_sum, document_word_to_topic_matrix, switched,
-                                                topic_denuminator_cache, topic_term_count, topic_term_sum)
-        if (doc_idx % 10000 == 0):
+                                                document_topic_sum, document_word_to_topic_matrix, switched,                                                topic_denuminator_cache, topic_term_count, topic_term_sum)
+        if doc_idx % 10000 == 0:
             print("sampled %s %% of the documents" % (str((doc_idx / len(document_list)) * 100)))
     return switched
 
@@ -277,9 +278,7 @@ def calculateDocumentTopixMixture(amount_of_topics, document_list, document_topi
     return document_topic_mixture
 
 
-
-
-if __name__=="__main__":
-    documents=simpleDataReader()
-    documents=removeCommonWords(documents)
-    gibbsLDA(20,documents)
+if __name__ == "__main__":
+    documents = simpleDataReader()
+    documents = removeCommonWords(documents)
+    gibbsLDA(20, documents)
