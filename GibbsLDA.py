@@ -1,16 +1,14 @@
 import csv
-import re
 import random
-import time
-import sys
-import math
+import re
+
 # http://www.arbylon.net/publications/text-est2.pdf#equation.1.5.78
 removeNonAlphabet=re.compile('[\W_]+', re.UNICODE)
 wordSet=set()
 random.seed(0)
 alpha=1/10
 beta=1/10000
-cut_common_word_percentage=0.10
+cut_common_word_percentage=0.01
 # stops the gibs sampling after less than this amount of topics have been changed since last sample
 switched_word_cutoff=.95
 
@@ -300,4 +298,4 @@ if __name__ == "__main__":
     documents = simpleDataReader()
     documents = removeCommonAndUniqueWords(documents)
 
-    gibbsLDA(15, documents)
+    gibbsLDA(30, documents)
