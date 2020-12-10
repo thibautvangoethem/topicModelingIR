@@ -113,3 +113,15 @@ topic 27: fda, impeachment, rousseff, symptoms, autism, clinical, therapy, depre
 topic 28: sweden, ailes, knicks, nba, manafort, cent, migrant, swedish, thompson, basketball, carlson, oreilly, asylum, sexually, pruitt, roger, austria, roberts, holocaust, warriors,
 topic 29: weiner, abedin, whites, inmates, cooper, vietnam, turnout, prisons, blacks, minorities, norms, register, huma, levin, mccrory, palin, clintons, ideological, conservatism, beck,
 
+10 topics, common word filter on 0.01 and unique filter
+topic 0: venezuela, insurers, mets, yankees, taiwan, premiums, medicare, qatar, aca, cartel, undocumented, subsidies, deportation, rebel, collins, humanitarian, oregon, patrol, sanctuary, fiscal,
+topic 1: duterte, nunes, mateen, taliban, judiciary, lynch, mattis, afghan, hearings, kremlin, interference, leaks, appointed, philippines, oversight, inquiry, garland, violated, associates, mueller,
+topic 2: nasa, airlines, moon, giants, jets, yards, manning, brady, quarterback, patriots, airline, rocket, ailes, flights, baton, passenger, flying, rouge, manchester, mars,
+topic 3: foods, sugar, meat, babies, symptoms, diseases, cells, diet, farmers, cdc, hurricane, outbreak, plants, hong, kong, pregnancy, mosquitoes, trees, prevention, infected,
+topic 4: coup, hamilton, hernandez, musical, istanbul, plot, horror, feminist, fisher, scenes, beauty, hero, episodes, gorka, ankara, haram, disney, boko, studio, nigeria,
+topic 5: yahoo, earnings, stocks, index, puerto, equity, loans, silicon, sp, microsoft, co, corp, electric, regulators, investor, samsung, profits, investments, rico, goldman,
+topic 6: murray, labour, trans, jeb, delegate, nba, lewandowski, mitt, turnout, tournament, beck, ellison, electorate, glenn, endorse, evangelical, races, cameron, msnbc, rallies,
+topic 7: cosby, macron, devos, wells, pm, dress, fargo, melania, walker, thompson, warriors, festival, woods, portland, clothes, allen, charter, basketball, wedding, guests,
+topic 8: biden, francis, archive, ideology, whites, wallace, enemies, sunni, ideological, qaeda, latino, turnout, baghdad, minorities, shiite, mitt, gingrich, lincoln, electorate, jesus,
+topic 9: netanyahu, flint, jerusalem, sweden, des, studio, en, les, à, palestinians, harry, dance, wine, lochte, ossoff, arts, beyoncé, cup, beer, settlements,
+
