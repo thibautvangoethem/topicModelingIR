@@ -10,13 +10,14 @@ alpha=1/10
 beta=1/10000
 cut_common_word_percentage=0.01
 # stops the gibs sampling after less than this amount of topics have been changed since last sample
-switched_word_cutoff=.95
+switched_word_cutoff=0.98
 
 # This list will be later used to take a subsection froma nd randomly choose an index according to weights
 index_list=list()
 
+
 def readStopword():
-    with open('data/stopwords.txt',"r") as stopFile:
+    with open('data/stopwords.txt', "r") as stopFile:
         stopwords=stopFile.read().split("\n")
         return stopwords
 
@@ -26,7 +27,7 @@ stopwords=readStopword()
 
 def simpleDataReader():
     data=list()
-    with open('data/news_dataset.csv', newline='\n',encoding="utf8") as csvfile:
+    with open('data/news_dataset.csv', newline='\n', encoding="utf8") as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             data.append((sanitiseData(row["content"])))
@@ -38,7 +39,7 @@ def sanitiseData(data):
     splitted=data.split(" ")
     removedStopWord = [removeNonAlphabet.sub('', removePossessive(word)).lower()
                        for word in splitted if word.lower()
-                       not in stopwords and word != "" and not any(i.isdigit() for i in word)]
+                       not in stopwords and word != "" and len(word) > 2 and not any(i.isdigit() for i in word)]
 
     wordSet.update(removedStopWord)
     return removedStopWord
@@ -51,36 +52,39 @@ def removePossessive(word):
 wordlist=dict()
 
 def removeCommonAndUniqueWords(documents):
-    docsets=list()
+    wordlist = dict()
+    nb_document_per_word = dict()
+    total_documents = len(documents)
     for document in documents:
-        docset=set()
+        words_in_document = set()
         for word in document:
             if word in wordlist:
-                wordlist[word]+=1
+                wordlist[word] += 1
+                if word not in words_in_document:
+                    nb_document_per_word[word] += 1
             else:
-                wordlist[word]=1
-            docset.add(word)
-        docsets.append(docset)
+                wordlist[word] = 1
+                nb_document_per_word[word] = 1
+            words_in_document.add(word)
     sorted_words = sorted(wordlist.items(), key=lambda x: x[1], reverse=True)
-    toremove=set()
+    toremove = set()
+    unique_words = 0
+    for word, frequentie in nb_document_per_word.items():
+        if frequentie <= 10:
+            toremove.add(word)
+            unique_words += 1
+        elif frequentie >= total_documents * 0.40:
+            toremove.add(word)
+            unique_words += 1
+    print("removed %d unique and common words" % unique_words)
+
     # remove top 1 percent of words
-    new_document=list()
-    for word in range(round(len(wordlist)*cut_common_word_percentage)):
+    new_document = list()
+    for word in range(round(len(wordlist) * cut_common_word_percentage)):
         toremove.add(sorted_words[word][0])
-    # remove words that only occur in one document
-    wordcountDict=dict()
-    for docset in docsets:
-        for word in docset:
-            if word in wordcountDict:
-                wordcountDict[word]+=1
-            else:
-                wordcountDict[word]=0
-    for item in wordcountDict.items():
-        if(item[1]==1):
-            toremove.add(item[0])
-    # actually remove these words
     for document in documents:
         new_document.append([word for word in document if word not in toremove])
+
     return new_document
 
 
@@ -113,9 +117,9 @@ def gibbsLDA(amount_of_topics,document_list):
     # first document topic mixture
     document_topic_mixture = calculateDocumentTopixMixture(amount_of_topics, document_list, document_topic_count)
 
-    print("highest topic chance per document")
-    for idx, doc in enumerate(document_topic_mixture):
-        print("doc %s : topic: %s"%(str(idx),str(doc.index(max(doc)))))
+    # print("highest topic chance per document")
+    # for idx, doc in enumerate(document_topic_mixture):
+    #     print("doc %s : topic: %s"%(str(idx),str(doc.index(max(doc)))))
     # second term topic mixture
     term_topic_mixture = calculateTermTopicMixture(amount_of_topics, topic_term_count,topic_term_sum)
     print("top 20 words per topic")
@@ -298,4 +302,4 @@ if __name__ == "__main__":
     documents = simpleDataReader()
     documents = removeCommonAndUniqueWords(documents)
 
-    gibbsLDA(30, documents)
+    gibbsLDA(20, documents)
