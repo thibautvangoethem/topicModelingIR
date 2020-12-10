@@ -250,22 +250,21 @@ def sampleNewTopicForWords(amount_of_topics, doc_idx, document_topic_count,docum
     So this full calculation is only done on the first term of a document
     :return the best topic for this word in this document as determined by the dirichlet distribution
     """
-    sample_list =list()
+    sample_list = list()
+    val = 0
     for topic_check in range(amount_of_topics):
-        first_fraction=(document_topic_count[doc_idx][topic_check]+alpha)/(document_topic_sum[doc_idx]+amount_of_topics*alpha)
+        first_fraction = (document_topic_count[doc_idx][topic_check]+alpha)/(document_topic_sum[doc_idx]+amount_of_topics*alpha)
         # second fraction
-        second_fraction=0
-        if(word in topic_term_count[topic_check]):
-            second_fraction=(topic_term_count[topic_check][word]+beta)/(topic_term_sum[topic_check]+(len(topic_term_count[topic_check])*beta))
+        if word in topic_term_count[topic_check]:
+            second_fraction = (topic_term_count[topic_check][word]+beta)/(topic_term_sum[topic_check]+(len(topic_term_count[topic_check])*beta))
         else:
-            second_fraction = (beta) / (
-                        topic_term_sum[topic_check] + (len(topic_term_count[topic_check]) * beta))
-        val=first_fraction*second_fraction
+            second_fraction = beta / (topic_term_sum[topic_check] + (len(topic_term_count[topic_check]) * beta))
+        val += first_fraction*second_fraction
         sample_list.append(val)
     # normalised_sample_list = [float(i) / sum(sample_list) for i in sample_list]
+    return random.choices(index_list, cum_weights=sample_list)
 
-    return random.choices(index_list,weights=sample_list)
-    # return
+
 def calculateTermTopicMixture(amount_of_topics, topic_term_count,topic_term_sum):
     """
     calculate the term topic mixture according to http://www.arbylon.net/publications/text-est2.pdf#equation.1.5.78 formula 81
@@ -304,5 +303,5 @@ if __name__ == "__main__":
     documents = simpleDataReader()
     documents = removeCommonAndUniqueWords(documents)
 
-    gibbsLDA(10, documents)
+    gibbsLDA(25, documents)
     print(str(pc() - t0)+"s")
