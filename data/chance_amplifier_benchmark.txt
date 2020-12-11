@@ -1,0 +1,14 @@
+top 20 words per topic
+topic 0: scott, pipeline, dakota, epa, puerto, israeli, johnson, access, navy, rico, brain, safe, girls, castro, learning, oregon, across, policies, nba, charlotte,
+topic 1: rice, points, susan, valley, polls, silicon, film, them, song, jewish, independence, worse, gray, pen, fighting, marine, ben, medical, almost, politicians,
+topic 2: romney, dallas, glenn, standing, terrorism, samsung, fisher, navy, beck, facing, awards, storm, georgia, christmas, oscars, stone, neil, mitt, professor, carrie,
+topic 3: league, coulter, wage, ann, stein, step, stories, go, boston, minimum, ben, movie, prize, palin, hampshire, chelsea, papers, winner, cancer, died,
+topic 4: warren, lady, kim, chapo, priebus, elizabeth, manchester, launches, ivanka, reagan, missile, red, nba, search, kanye, concert, conway, korean, iphone, harry,
+topic 5: venezuela, freedom, martin, joe, cars, writing, yahoo, dollar, golden, investors, gold, growth, attorney, flight, opposition, stock, stocks, biden, shares, selfdriving,
+topic 6: bombing, hurricane, injured, pakistan, bowl, afghan, istanbul, afghanistan, brussels, dozens, suspected, gawker, troops, matthew, vs, bomber, taliban, turkish, threatens, oregon,
+topic 7: tillerson, goldman, sachs, rex, dem, valley, merkel, failed, girls, silicon, warning, sees, williams, disney, jail, startup, aaron, island, michigan, ground,
+topic 8: fund, mcconnell, committee, check, and, fact, roof, wells, dinner, conway, probably, ways, fargo, someone, including, idea, issue, hearing, nunes, hedge,
+topic 9: assad, scalia, though, tim, coverage, different, clear, always, means, mean, summer, seen, happens, shares, level, sean, photo, chemical, them, growing,
+199.3351831s
+
+Process finished with exit code 0

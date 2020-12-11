@@ -164,4 +164,111 @@ topic 8: jeffpoor, rabbits, reedie, gohmert, hannity, transit, frankfurt, accele
 topic 9: prisoners, savings, cartel, hunt, mueller, victories, raw, desert, brooks, lane, jessica, pilots, gunmen, medication, instantly, min, angel, awr, hypocrisy, que,
 3898.9434819s
 
+
+50 topics, common word filter on 0.01 and unique filter with document per topic
+highest document chance per topic
+topic 0:28941 49729 132770 136827 62171 77852 3739 45712 123608 89815 8282 132461 121732 30666 93031 85392 46311 75318 88720 107339
+topic 1:20718 9776 40802 47979 43984 104564 79540 45743 24619 27009 65164 73498 63652 21324 85977 8014 23420 43273 45757 14662
+topic 2:42180 30884 43226 49462 46721 5102 33406 45553 23579 92222 63191 65143 63296 8446 44375 14568 46305 43788 8977 19834
+topic 3:54851 33446 54468 54615 54884 55271 65055 102031 58035 49205 40160 43444 46743 46934 54531 54887 61657 62676 63354 62858
+topic 4:43348 45866 133079 133673 14351 26916 73598 113328 139422 49284 47044 44999 46967 28692 80271 110616 45510 47959 62071 47284
+topic 5:40174 44832 46500 21909 45152 130722 49659 65215 44579 34299 41614 42404 45063 63117 73105 30717 64909 26000 25604 28954
+topic 6:70383 63061 45504 31566 47196 47518 45193 46126 20885 16982 28971 39895 42396 56857 25367 42906 86591 66173 17150 16218
+topic 7:44292 57660 75792 9672 11421 82283 91771 48946 3401 91062 90138 38385 83296 16044 118658 66720 128398 53902 17621 75117
+topic 8:63900 63445 63703 32502 62020 115317 66004 20135 30172 65229 79770 69644 13052 64500 17379 88168 19714 43197 43763 64055
+topic 9:43684 43792 53553 54419 54442 54769 54774 54836 55093 55587 61797 62696 63949 2711 105185 122921 111227 117265 83104 53007
+topic 10:93106 81095 85307 81820 86014 99081 112456 70731 102354 133708 91661 60410 57634 83038 81978 140459 23582 85028 105100 99205
+topic 11:40175 42208 42695 45621 64407 68405 68402 31266 27019 46196 134751 64405 121535 27828 58460 120398 41017 64401 42582 136714
+topic 12:39412 83829 126287 55876 28851 110840 124961 18081 26527 130277 22484 126993 87425 115452 56755 34295 14164 61289 65045 59311
+topic 13:45433 42679 62190 62738 28477 46318 23553 46521 1465 28431 47621 99738 66016 29127 109781 75117 80331 66355 89439 101898
+topic 14:41755 46010 65371 9908 63900 11515 20572 25194 20639 78290 82976 93011 43412 12039 45759 15785 44416 44351 35860 16142
+topic 15:51281 94535 109411 42967 20000 88443 17823 77351 118595 35184 10729 23430 57662 60931 123142 105916 20065 96085 75439 9548
+topic 16:85189 84593 44332 58341 120652 116343 14698 120773 95389 15532 127791 140348 121380 94765 113900 92282 139796 108065 134740 79638
+topic 17:131345 133673 22073 7605 86130 116749 83762 119987 111084 83595 33573 92063 63252 43238 42258 114701 67573 8328 68679 47959
+topic 18:41373 108054 5661 82477 100951 124539 40648 6635 108251 17029 81704 130081 61053 15925 48374 28471 42083 73978 61226 26765
+topic 19:43000 52434 94811 109680 94988 127611 65370 25227 83340 36049 18880 12292 41532 41557 25128 46289 27614 67525 128041 70596
+topic 20:86589 1371 62672 134 93237 82210 104906 98951 97883 130314 64146 104005 135908 78414 114853 99993 140652 5323 78808 229
+topic 21:127335 23577 43111 69700 58187 66988 109779 47383 93093 70662 54817 120663 25747 52834 31241 57073 30160 65780 130780 123341
+topic 22:99412 109431 34095 94106 34145 9567 136289 78751 122787 22964 52486 4996 68810 78523 27335 53442 24462 98744 123620 40172
+topic 23:21403 25249 27507 77941 125259 122789 24504 36944 109960 60437 6327 35112 8334 124503 41168 67113 109462 99321 2545 17653
+topic 24:115987 30945 120940 35728 27537 131740 43972 107114 75480 51205 33957 138071 40317 111824 5768 17532 17815 52007 35486 131857
+topic 25:44491 131794 99912 104174 104723 35670 96037 27947 48869 66293 62156 46442 106206 22001 70045 10452 54819 128475 69158 39342
+topic 26:46305 57069 32363 85855 45289 124595 82796 33026 111395 87047 136373 14640 48869 48231 95173 116298 140172 52145 12654 42100
+topic 27:26098 30514 63193 63274 134675 122553 49774 22048 17656 28361 107320 37569 132104 54404 129061 113376 86033 16244 36756 7566
+topic 28:72063 50495 72626 58283 9672 81891 24367 48963 53826 10389 56381 82796 47879 68940 90268 114807 43317 85918 68119 31233
+topic 29:70471 42260 44176 70645 29938 45428 68341 53856 67933 48041 83515 21699 37847 32480 130531 44136 137711 57948 47671 25473
+topic 30:41846 92695 67652 84709 111109 26773 91031 66350 45546 113927 36270 68372 17829 118179 49046 21491 79963 97923 113171 43806
+topic 31:114030 119347 105075 14959 65764 89427 63005 15174 90988 31822 59465 47201 20422 24741 129553 140269 41842 113298 131650 63964
+topic 32:68993 22582 57180 114147 113200 70234 17617 52344 88712 37362 93702 74253 123711 13868 64722 103381 47612 81382 44880 29634
+topic 33:32967 115297 22638 37699 124148 41269 93693 92218 113422 20102 40003 13650 59437 19499 17712 122347 81382 71593 53175 8650
+topic 34:105256 35807 124787 34034 63093 47493 80528 69614 43845 10466 51168 67196 39709 51655 83634 17079 120619 9096 58864 123076
+topic 35:52088 52164 52908 125120 16127 13174 96444 104163 57907 131907 39016 5960 78451 111727 92693 36660 52298 35458 119121 124412
+topic 36:108548 46143 61407 48686 27364 81441 12138 76311 48669 133457 139092 32139 64428 15560 47368 137734 89450 108770 117444 92203
+topic 37:117718 5446 48908 3820 68807 15443 28145 12016 39393 126834 99486 58751 10947 125263 41597 72949 36272 80538 122129 94609
+topic 38:63083 105702 47233 32244 50977 138794 126408 58776 47456 46610 16980 56733 112557 75148 15456 76113 4680 20638 69283 72175
+topic 39:10305 62980 68868 84692 16492 23448 135490 131079 65646 86113 86387 42010 33029 5654 93547 68474 13495 55499 37331 2990
+topic 40:121485 20144 44498 29995 50039 30345 88024 40928 56172 5293 74199 136791 66935 43839 3899 72749 55344 16252 128417 84467
+topic 41:113014 92818 134410 108900 96274 53315 45277 472 55191 112399 119262 59001 20048 24481 74913 99431 112137 9850 122064 63368
+topic 42:11748 95090 40840 117083 43719 117340 48294 112538 88688 51939 119544 27947 131380 15659 58028 84883 96150 58090 48226 51519
+topic 43:30626 2978 111450 76221 56231 140757 45544 134532 35600 59741 130942 129120 67856 85678 51587 128323 16527 29739 137274 25277
+topic 44:38831 2016 110102 18669 21973 110630 49903 114267 13903 93818 18882 51666 20368 48646 51842 7444 51452 4913 66872 2345
+topic 45:105711 97315 6022 12335 28571 42207 40547 86347 18288 91085 98390 55701 59152 40522 115558 73408 22550 2116 2580 15537
+topic 46:141561 132646 66812 86772 36818 45132 3265 126524 63497 94571 109595 44677 65901 67722 117132 111855 129 67627 55213 74565
+topic 47:44047 1047 96720 66343 20291 37302 858 65169 12178 114111 104547 4899 108559 42339 31693 43503 60062 126688 35062 96186
+topic 48:43543 12742 104940 3190 59173 59034 61383 15158 31705 91715 49439 59572 57010 46287 130570 133872 111106 47080 71188 35099
+topic 49:138479 7174 139060 68011 108049 13282 70626 53697 56275 71803 56874 54800 53754 108568 53778 134415 70494 53805 50330 36060
+top 20 words per topic
+topic 0: dalio, any, stepien, rechnitz, percoco, reichberg, sater, washitaw, branca, foval, karrada, lacker, ava, samhsa, ofa, holes, loehmann, ryun, padgett, belmonte,
+topic 1: alaska, filibuster, estimate, advocate, pitch, inspector, announcing, maine, addiction, avoiding, midnight, dialogue, leg, documented, outbreak, frame, gaining, thrown, tactics, yards,
+topic 2: informed, settled, vital, pattern, survived, strategies, keith, hits, formed, scenes, constant, directors, waste, latter, sparked, pound, factory, strongest, savings, only,
+topic 3: josh, interference, assessment, marketing, reforms, kentucky, violated, tape, heroin, completed, bond, anderson, detained, mandate, caption, apologize, listening, capture, communication, yiannopoulos,
+topic 4: congressman, gary, proof, regulators, solutions, careful, formally, stayed, promising, rob, beliefs, owns, maintained, grounds, returning, forth, unknown, invest, substantial, ideological,
+topic 5: vermont, bipartisan, pointing, trillion, priorities, frankly, rivals, custody, commit, incoming, covering, patriot, disagree, relevant, campaigning, hosted, convinced, virtually, materials, letters,
+topic 6: oreilly, msnbc, mets, ian, donations, podesta, harris, testified, marshall, investor, editorial, oversight, taliban, stewart, todd, discussing, upcoming, staffers, error, mitt,
+topic 7: beruff, dalio, foval, burqa, washitaw, belmonte, woebcken, inflaters, percoco, movable, rechnitz, wtvd, mackintosh, andiola, tometi, pippen, readler, smores, tirico, ofa,
+topic 8: indictment, clip, hearings, wallace, ninth, leaking, hood, paperwork, riots, imagined, denying, kenneth, deceptive, welcomes, racketeering, minds, clicking, calves, microsoft, unbearable,
+topic 9: updated, businessman, nancy, walker, oval, partial, transcript, seattle, sept, weekly, delay, ap, contacts, chelsea, deportation, rolling, deficit, through, cooper, kingdom,
+topic 10: responding, foval, disregard, mccammon, beruff, dugouts, washitaw, machar, swanepoel, gonyea, cofina, pippen, glam, llorente, padgett, toles, tometi, woebcken, effectual, binged,
+topic 11: palin, further, co, salt, responding, blasted, bombings, tasked, cares, tyler, birther, cup, digits, douglass, biofuel, equity, wore, wine, relatives, farm,
+topic 12: presumptive, publisher, judiciary, ailes, mate, reid, koch, perry, investigated, cartel, aca, airline, brady, counties, neil, requiring, cuomo, scotland, yahoo, warrant,
+topic 13: reducing, luxury, seasons, sater, communism, feed, sachs, technologies, warming, rain, schedule, somewhere, formally, myself, josh, nowhere, albus, striking, ii, transfer,
+topic 14: integrity, caucuses, cup, honored, notified, should, harvey, mosquito, emphasis, friedman, palestinians, waited, diplomacy, gingrich, amanda, hicks, yelled, grief, raped, shy,
+topic 15: pam, susan, afghan, warner, realdonaldtrump, hackers, lawsuits, mattis, frontrunner, cubs, knicks, resignation, vetting, compromise, rodriguez, mcdonald, lease, baghdad, parade, dating,
+topic 16: gou, ava, cheerios, militant, reichberg, morgan, stretch, dalio, returning, openly, excited, heading, waters, creative, elements, tv, enemies, fate, movements, benfica,
+topic 17: determining, unaccompanied, mets, effectiveness, foods, cargo, beauty, penn, captain, belgium, phenomenal, beer, organic, virtual, raqqa, sink, chef, abu, tissue, winston,
+topic 18: libertarian, warriors, devos, visa, hogan, zuckerberg, getty, fallon, rouge, flowers, puzder, terminal, schultz, mcmaster, temer, spotify, martinez, commentator, lt, unfavorable,
+topic 19: lewandowski, rogers, buffett, jerome, snyder, sudan, giants, istanbul, autism, embassy, potatoes, minors, gingrich, diet, foods, cubs, pack, taliban, farm, sheen,
+topic 20: fraternity, batman, bundy, porter, jackie, heidi, doping, nsa, vegan, snowden, haiti, schwarzenegger, vetoes, defects, profiling, unqualified, vaccine, lab, mets, vouchers,
+topic 21: mueller, mylan, gawker, chaffetz, schiff, tapper, sears, kislyak, tpm, att, clapper, potter, bolton, superman, perez, nra, shaub, trent, recuse, rousseff,
+topic 22: murray, carbon, coup, genius, heritage, trees, illness, embassy, stocks, tehran, xinhua, musk, hollande, gdp, sachs, automakers, boeing, dunham, roots, welfare,
+topic 23: ronaldo, grassley, jeromeehudson, daca, leahy, tornado, forehand, duterte, measles, awrhawkins, lithium, ypg, zimbabwe, murray, ticks, yards, gavin, subpoenas, garland, galaxy,
+topic 24: greenberg, dauman, abdeslam, oge, reef, batman, cosby, sandusky, theranos, birdie, neanderthals, syed, hodgkinson, nasa, thrush, pfizer, weld, shari, djokovic, goodson,
+topic 25: clamor, appointed, babies, stayed, ava, outrage, burqa, loehmann, theme, taught, ideology, emin, sater, liked, sets, influential, hidden, competitive, zucman, frappuccino,
+topic 26: creates, pattern, prepare, covering, fundamentally, falls, accident, quit, dominated, waste, highway, vietnam, physically, friendship, cents, neighborhoods, dry, latter, interact, distance,
+topic 27: yankees, yeah, cells, collins, msnbc, judiciary, nba, colleges, tea, congressman, mississippi, basketball, commissioner, informed, shopping, visitors, mitch, meat, retail, diseases,
+topic 28: waves, garland, musk, baker, disney, reforms, illness, vermont, farmers, lied, attempting, picks, utah, detention, rnc, soldier, memories, races, slave, yeah,
+topic 29: prisoners, loans, bipartisan, employers, symptoms, file, islands, sterling, subsidies, denver, prevention, tank, soviet, harry, ought, lift, providers, educational, mountain, nancy,
+topic 30: offshore, exchanges, giants, kong, thompson, lane, massacre, charlotte, performed, outbreak, carbon, fisher, mcdonald, transmission, siriusxm, eligible, slavery, boycott, ownership, latino,
+topic 31: lochte, nunes, yates, mosquitoes, pruitt, pamkeynen, brady, mosquito, scully, insurers, oregon, devos, allen, podesta, soda, tournament, unemployment, hong, genetic, brazilian,
+topic 32: waste, intervention, clothing, metal, departure, bag, surface, brutal, successfully, causing, uncertainty, walls, dec, interviewed, chamber, pilot, falls, nonprofit, applied, rex,
+topic 33: divorce, spotlight, warner, jazz, rebel, marketing, hosts, sky, bears, mississippi, joy, memories, journalism, accident, nypd, torture, clothes, windows, migrant, loans,
+topic 34: yahoo, murray, brzezinski, premiums, del, ailes, gorka, backhand, dress, hurricane, jurors, carbon, thompson, disney, hiv, haiti, mothers, cup, sterling, lunch,
+topic 35: farmers, nazi, berlin, afghan, venezuela, drink, coup, memorial, farm, tennessee, doors, tea, pat, lawsuits, ring, socialist, ankara, addiction, microsoft, asylum,
+topic 36: beer, yankees, mobley, salt, heroin, opioid, overdose, nasa, jesus, virtual, dylan, girardi, mail, lunch, stadium, grassley, mosque, todd, taylor, restaurants,
+topic 37: bitcoin, takata, cosby, ppg, carbon, murray, jupiter, wilkins, tournament, silva, cells, magnifitrent, plants, bridgewater, warmbier, infertility, depp, dapa, hermine, manson,
+topic 38: adopted, babies, doig, integrity, counter, cells, bipartisan, berlin, legislature, file, mitt, bag, privilege, requested, employers, phase, procedures, hostile, custody, foval,
+topic 39: snap, devos, graduate, charity, violation, samples, sky, verdict, soviet, painting, jennifer, regulators, duke, detained, enacted, urging, dna, successor, vaccines, outbreak,
+topic 40: castile, yahoo, yankees, espn, qatar, nunes, phones, somalia, coup, bias, gorka, rachel, medicare, cdc, pac, caddell, nba, testified, baton, vaccine,
+topic 41: index, venezuela, torture, output, dylan, stocks, earn, taiwan, recession, spain, prize, independents, inaugural, blog, brady, cameron, exports, warnings, recovery, declaration,
+topic 42: puerto, pokémon, chocolate, qatar, cake, yen, fletcher, murray, mitchell, dubai, woods, disney, trees, abe, apron, tobacco, manigault, cells, diego, bin,
+topic 43: toshiba, ianhanchett, hanchett, rousey, cartel, yates, pepe, kyrgios, yanez, lula, mcgregor, fisher, measles, cohen, erdely, pluto, viacom, hershey, hiv, sugar,
+topic 44: puerto, jerusalem, brady, medicare, qatar, teaching, mitch, reforms, error, trillion, netanyahu, exchanges, warriors, palestinians, nba, coup, presumptive, updated, venezuela, oversight,
+topic 45: powell, brotherhood, perez, maduro, howard, schultz, rocket, glyphosate, anthem, taylor, capitalism, alzheimer, memorial, lent, puerto, cop, oakland, ferguson, slim, warnings,
+topic 46: duterte, durst, zenefits, pamkeynen, mcclendon, dee, nunes, palantir, yahoo, cfpb, oakley, premiums, ferrante, rahami, sudan, aca, dt, harris, hastert, sp,
+topic 47: manafort, bankruptcy, sudan, yankees, gunman, hawkins, boeing, embassy, legitimate, schultz, unauthorized, fled, websites, undocumented, detention, license, shooter, utah, cohen, electricity,
+topic 48: gawker, mateen, hogan, zoo, denton, gabbard, gorilla, thiel, tensing, aliens, gabriel, morrissey, brotherhood, kobach, bollea, starbucks, jerusalem, kaepernick, sharia, ginsburg,
+topic 49: asylum, lynch, civilian, patrol, bipartisan, humanitarian, whites, missiles, mitt, mattis, utah, netanyahu, jerusalem, controlled, innocent, visa, insurers, deny, todd, undocumented,
+13185.105157999998s
+
 Process finished with exit code 0
+
