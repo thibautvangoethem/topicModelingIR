@@ -65,7 +65,7 @@ def removeCommonWords(documents):
         if frequentie <= 10:
             toremove.add(word)
             unique_words += 1
-        elif frequentie >= total_documents*0.40:
+        elif frequentie >= total_documents*0.50:
             toremove.add(word)
             unique_words += 1
     print("removed %d unique words" % unique_words)
@@ -95,7 +95,7 @@ if __name__ == "__main__":
     data, removed = removeCommonWords(data)
     wordSet = wordSet - removed
     print("common words removed, start building corpus")
-    topicSize = 15
+    topicSize = 25
     # Don't know this one yet
     vocabularySize = "?"
     # Here we need to sanitize our data
