@@ -34,7 +34,7 @@ def simpleDataReader():
     with open('data/news_dataset.csv', newline='\n', encoding="utf8") as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            data.append((sanitiseData(row["content  "])))
+            data.append((sanitiseData(row["content"])))
     return data
 
 
