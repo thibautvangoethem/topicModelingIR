@@ -125,3 +125,17 @@ topic 7: cosby, macron, devos, wells, pm, dress, fargo, melania, walker, thompso
 topic 8: biden, francis, archive, ideology, whites, wallace, enemies, sunni, ideological, qaeda, latino, turnout, baghdad, minorities, shiite, mitt, gingrich, lincoln, electorate, jesus,
 topic 9: netanyahu, flint, jerusalem, sweden, des, studio, en, les, à, palestinians, harry, dance, wine, lochte, ossoff, arts, beyoncé, cup, beer, settlements,
 
+
+10 topics , common word filter on 0.02 and unique filter
+topic 0: musical, oscar, feminist, episodes, studio, jokes, universe, comic, netflix, fisher, audiences, prize, hero, celebrities, personality, tv, hbo, scenes, yiannopoulos, roles,
+topic 1: index, stocks, hurricane, sp, babies, retail, rain, plants, crude, pregnancy, recovery, mosquitoes, cdc, outbreak, equity, cells, farmers, mosquito, forecast, infected,
+topic 2: murray, whites, wells, stein, blacks, gawker, bias, manchester, fargo, hamilton, tennis, ideology, minorities, zuckerberg, taiwan, schultz, spencer, thiel, cohen, hogan,
+topic 3: hackers, cyber, mateen, microsoft, blasio, samsung, hernandez, impeachment, inmates, stolen, hack, sentenced, brazilian, phones, hacked, computers, assange, execution, rousseff, podesta,
+topic 4: mitt, yahoo, bipartisan, delegate, aca, ideological, puerto, insurers, lewandowski, priorities, premiums, turnout, presumptive, rnc, subsidies, endorse, gingrich, electorate, caucuses, protections,
+topic 5: asylum, taliban, missiles, humanitarian, ballistic, netanyahu, pyongyang, civilian, afghan, jets, qatar, province, rebel, coup, bombs, jerusalem, detained, embassy, islamist, patrol,
+topic 6: cosby, espn, flint, cartel, charlotte, downtown, kaepernick, thompson, festival, latino, anthem, tennessee, spanish, portland, berkeley, todd, glenn, louis, walker, clark,
+topic 7: sugar, foods, meat, nasa, drink, diet, musk, addiction, kitchen, restaurants, wine, mars, lab, depression, chicken, therapy, fda, heroin, opioid, stress,
+topic 8: nunes, yankees, mets, nba, manafort, collins, carbon, warming, warriors, basketball, knicks, tournament, abedin, pruitt, championship, tribe, weiner, chelsea, moon, associates,
+topic 9: labour, macron, duterte, eu, ailes, universities, kong, hong, cameron, providers, dutch, colleges, abortions, academic, devos, employers, charter, profits, regulators, membership,
+4542.231453400001s
+
