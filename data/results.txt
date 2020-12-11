@@ -139,3 +139,29 @@ topic 8: nunes, yankees, mets, nba, manafort, collins, carbon, warming, warriors
 topic 9: labour, macron, duterte, eu, ailes, universities, kong, hong, cameron, providers, dutch, colleges, abortions, academic, devos, employers, charter, profits, regulators, membership,
 4542.231453400001s
 
+10 topics, common word filter on 0.01 and unique filter with document per topic
+highest document chance per topic
+topic 0:46048 20982 46839 40706 87834 22802 39798 40437 40559 41975 42067 46312 46689 46965 47271 52434 60158 60337 63189 139172
+topic 1:9776 61902 100907 84558 48301 55791 3823 17882 27902 32556 33009 33116 35785 35789 36294 39869 40126 40416 41089 41576
+topic 2:63084 104443 29375 31547 45581 24035 20924 22262 31195 62080 60680 64055 25898 44211 63391 64921 85597 3823 17882 27902
+topic 3:3833 2877 130010 2963 5442 217 5421 133114 4828 2773 4956 112887 5132 5478 13957 34359 1786 111874 52980 2566
+topic 4:40175 62676 74405 17528 66604 66675 67760 21305 53213 81599 24302 63808 77952 66329 8702 11693 28996 60285 70928 48273
+topic 5:27844 15827 86591 64591 40713 37669 55650 78911 42423 46307 46786 66468 66053 35267 66020 47337 8105 25241 94006 127718
+topic 6:14451 14414 36145 43819 89670 60826 33974 86056 11372 9605 64019 17096 16725 49117 86145 23244 118456 16336 16477 83288
+topic 7:26876 40072 36857 132714 33166 135067 42281 70308 38151 134088 27053 36980 24813 61747 26382 62812 91692 120183 45652 107934
+topic 8:29368 11339 13764 13970 26571 43231 20787 21861 23368 31136 92017 25064 25478 21890 30875 42452 47318 60817 8424 12501
+topic 9:15174 44075 24664 50638 35848 51040 24256 11743 41460 30333 37229 2234 42370 50085 63223 119 15316 48697 37135 96195
+top 20 words per topic
+topic 0: master, rebel, lay, dressed, funeral, discovery, forest, policing, honestly, dialogue, transfer, speakers, classroom, bond, nonetheless, hannity, discourse, sample, caliphate, bombings,
+topic 1: budgets, gear, alerted, permissions, venus, auerbach, oneal, plebiscite, downey, fifa, originalists, reinforced, nrk, hussam, ni, lyle, ramey, taft, supplies, bromberg,
+topic 2: discussing, alerted, gear, liquified, forest, catherine, gypsy, qui, budgets, supplies, awarded, ian, counts, scare, faire, redding, savings, quand, quil, beaucoup,
+topic 3: funeral, sample, caliphate, dressed, speakers, lorelai, policing, master, lay, rory, ghostbusters, worship, forehand, honestly, fallows, rebel, villages, lean, transfer, positioned,
+topic 4: competitive, legally, equality, pressed, skeptical, killer, movements, billions, resulting, committees, bond, plea, declare, awarded, walks, dismiss, believing, margins, outspoken, evident,
+topic 5: outbreak, managers, australian, province, fame, roots, surely, recession, taylor, producers, islamist, comic, queen, nasa, through, flow, netanyahu, athlete, mix, bin,
+topic 6: purely, drain, concentration, shores, lemon, bust, buddies, wikipedia, colluded, psa, kidney, ed, ecosystems, ipo, shortfall, skinny, slit, denominator, gucci, depravity,
+topic 7: whites, musical, accident, labour, degrees, embassy, insurers, warming, giants, duterte, yeah, collins, medicare, bipartisan, mattis, silver, voices, theme, howard, heritage,
+topic 8: jeffpoor, rabbits, reedie, gohmert, hannity, transit, frankfurt, accelerators, reconvenes, orientals, peacekeeper, imploding, sheikhoun, sarin, mcaleenan, udi, vouching, yuba, cecilerichards, stevens,
+topic 9: prisoners, savings, cartel, hunt, mueller, victories, raw, desert, brooks, lane, jessica, pilots, gunmen, medication, instantly, min, angel, awr, hypocrisy, que,
+3898.9434819s
+
+Process finished with exit code 0

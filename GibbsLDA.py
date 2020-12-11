@@ -3,6 +3,7 @@ import random
 import re
 import pickle
 from time import sleep, perf_counter as pc
+from operator import itemgetter
 # http://www.arbylon.net/publications/text-est2.pdf#equation.1.5.78
 
 
@@ -33,7 +34,7 @@ def simpleDataReader():
     with open('data/news_dataset.csv', newline='\n', encoding="utf8") as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            data.append((sanitiseData(row["content"])))
+            data.append((sanitiseData(row["contetn"])))
     return data
 
 
@@ -124,16 +125,27 @@ def gibbsLDA(amount_of_topics,document_list):
     # first document topic mixture
     document_topic_mixture = calculateDocumentTopixMixture(amount_of_topics, document_list, document_topic_count)
 
-    with open('obj/document_topic_mixture.pkl', 'wb') as file:  # save document_topic_mixture to a file
+    with open('obj/document_topic_mixture_topics.pkl', 'wb') as file:  # save document_topic_mixture to a file
         pickle.dump(document_topic_mixture, file)
 
-    # print("highest topic chance per document")
-    # for idx, doc in enumerate(document_topic_mixture):
-    #     print("doc %s : topic: %s"%(str(idx),str(doc.index(max(doc)))))
-    # second term topic mixture
+    print("highest document chance per topic ")
+    topic_chances_list=list()
+    for topic in range(amount_of_topics):
+        topic_chances_list.append(list())
+    for idx, doc in enumerate(document_topic_mixture):
+        for topic in range(amount_of_topics):
+            topic_chances_list[topic].append((idx,document_topic_mixture[idx][topic]))
+    for topic in range(amount_of_topics):
+        sorted_list=sorted(topic_chances_list[topic],key=itemgetter(1), reverse=True)
+        print("topic %s:"%(str(topic)),end='')
+        for i in sorted_list[:20]:
+            print(i[0],end=' ')
+        print(" ")
+        # print("doc %s : topic: %s"%(str(idx),str(doc.index(max(doc)))))
+
     term_topic_mixture = calculateTermTopicMixture(amount_of_topics, topic_term_count,topic_term_sum)
 
-    with open('obj/term_topic_mixture.pkl', 'wb') as file:  # save document_topic_mixture to a file
+    with open('obj/term_topic_mixture_topics.pkl', 'wb') as file:  # save document_topic_mixture to a file
         pickle.dump(term_topic_mixture, file)
 
     print("top 20 words per topic")
@@ -283,7 +295,7 @@ def sampleNewTopicForWords(amount_of_topics, doc_idx, document_topic_count,docum
 def calculateTermTopicMixture(amount_of_topics, topic_term_count,topic_term_sum):
     """
     calculate the term topic mixture according to http://www.arbylon.net/publications/text-est2.pdf#equation.1.5.78 formula 81
-    :return: the term topic mixutre matrix (K*V) V is here actually a dict containing words to probabilities, this is done to save memory
+    :return: the term topic mixture matrix (K*V) V is here actually a dict containing words to probabilities, this is done to save memory
     """
     term_topic_mixture = list()
     for topic in range(amount_of_topics):
@@ -294,7 +306,6 @@ def calculateTermTopicMixture(amount_of_topics, topic_term_count,topic_term_sum)
             term_topic_mixture[topic][term] = topic_term_count[topic][term]
     return term_topic_mixture
 
-eno
 def calculateDocumentTopixMixture(amount_of_topics, document_list, document_topic_count):
     """
     calculate the Document topic mixture according to http://www.arbylon.net/publications/text-est2.pdf#equation.1.5.78 formula 82
@@ -306,27 +317,19 @@ def calculateDocumentTopixMixture(amount_of_topics, document_list, document_topi
         for topic in range(amount_of_topics):
             denominator = 0
             for denominator_topic in range(amount_of_topics):
-                denominator += document_topic_count[doc_idx][denominator_topic]
-            denominator += alpha
+                denominator += document_topic_count[doc_idx][denominator_topic]+alpha
             numerator = document_topic_count[doc_idx][topic] + alpha
             document_topic_mixture[doc_idx][topic] = numerator / denominator
     return document_topic_mixture
 
-def calculateDocumentTopicRelevancy(amount_of_topics, document_list, document_topic_count):
-    """
-    calculates the chances that a document belongs
-    :param amount_of_topics:
-    :param document_list:
-    :param document_topic_count:
-    :return:
-    """
 if __name__ == "__main__":
     t0 = pc()
     documents = simpleDataReader()
     documents, removed = removeCommonAndUniqueWords(documents)
     wordSet = wordSet - removed
-    alpha = 1/20
+    amount_of_topics=50
+    alpha = 1/amount_of_topics
     beta = 1/len(wordSet)
 
-    gibbsLDA(20, documents)
+    gibbsLDA(amount_of_topics, documents)
     print(str(pc() - t0)+"s")
