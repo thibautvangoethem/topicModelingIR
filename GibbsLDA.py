@@ -1,6 +1,7 @@
 import csv
 import random
 import re
+import pickle
 from time import sleep, perf_counter as pc
 # http://www.arbylon.net/publications/text-est2.pdf#equation.1.5.78
 
@@ -120,11 +121,18 @@ def gibbsLDA(amount_of_topics,document_list):
     # first document topic mixture
     document_topic_mixture = calculateDocumentTopixMixture(amount_of_topics, document_list, document_topic_count)
 
+    with open('obj/document_topic_mixture.pkl', 'wb') as file:  # save document_topic_mixture to a file
+        pickle.dump(document_topic_mixture, file)
+
     # print("highest topic chance per document")
     # for idx, doc in enumerate(document_topic_mixture):
     #     print("doc %s : topic: %s"%(str(idx),str(doc.index(max(doc)))))
     # second term topic mixture
     term_topic_mixture = calculateTermTopicMixture(amount_of_topics, topic_term_count,topic_term_sum)
+
+    with open('obj/term_topic_mixture.pkl', 'wb') as file:  # save document_topic_mixture to a file
+        pickle.dump(term_topic_mixture, file)
+
     print("top 20 words per topic")
     for idx, topic in enumerate(term_topic_mixture):
         sorted_topics=sorted(topic.items(), key=lambda x: x[1], reverse=True)
