@@ -88,7 +88,7 @@ def removeCommonAndUniqueWords(documents):
     for document in documents:
         new_document.append([word for word in document if word not in toremove])
 
-    return new_document
+    return new_document, toremove
 
 def gibbsLDA(amount_of_topics,document_list):
     # initialisation
@@ -323,7 +323,10 @@ def calculateDocumentTopicRelevancy(amount_of_topics, document_list, document_to
 if __name__ == "__main__":
     t0 = pc()
     documents = simpleDataReader()
-    documents = removeCommonAndUniqueWords(documents)
+    documents, removed = removeCommonAndUniqueWords(documents)
+    wordSet = wordSet - removed
+    alpha = 1/20
+    beta = 1/len(wordSet)
 
-    gibbsLDA(25, documents)
+    gibbsLDA(20, documents)
     print(str(pc() - t0)+"s")
