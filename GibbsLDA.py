@@ -286,7 +286,7 @@ def sampleNewTopicForWords(amount_of_topics, doc_idx, document_topic_count,docum
         else:
             second_fraction = (beta) / (
                         topic_term_sum[topic_check] + precalc_beta[topic_check])
-        val=first_fraction*second_fraction
+        val += first_fraction*second_fraction
         sample_list.append(val)
     # normalised_sample_list = [float(i) / sum(sample_list) for i in sample_list]
     return random.choices(index_list, cum_weights=sample_list)
@@ -317,7 +317,7 @@ def calculateDocumentTopixMixture(amount_of_topics, document_list, document_topi
         for topic in range(amount_of_topics):
             denominator = 0
             for denominator_topic in range(amount_of_topics):
-                denominator += document_topic_count[doc_idx][denominator_topic]+alpha
+                denominator += (document_topic_count[doc_idx][denominator_topic]+alpha)
             numerator = document_topic_count[doc_idx][topic] + alpha
             document_topic_mixture[doc_idx][topic] = numerator / denominator
     return document_topic_mixture
@@ -327,7 +327,7 @@ if __name__ == "__main__":
     documents = simpleDataReader()
     documents, removed = removeCommonAndUniqueWords(documents)
     wordSet = wordSet - removed
-    amount_of_topics=50
+    amount_of_topics=10
     alpha = 1/amount_of_topics
     beta = 1/len(wordSet)
 
