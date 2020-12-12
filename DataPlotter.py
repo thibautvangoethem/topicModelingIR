@@ -66,13 +66,28 @@ def plot_topic_distribution(document_topic_mixture):
     plt.show()
 
 
-if __name__ == "__main__":
-    # documents = simpleDataReader()
-    # documents, removed = removeCommonAndUniqueWords(documents)
-    # with open('obj/pre_documents.pkl', 'wb') as file:  # save document_topic_mixture to a file
-    #     pickle.dump(documents, file)
-    plt.rc('font', size=18)
-    with open('obj/document_topic_mixture_topics.pkl', 'rb') as file:
-       documents = pickle.load(file)
+def printLatexTable(term_topic_mixture):
+    print("\\begin{table}[h!]\n\\begin{adjustwidth}{-5cm}{-5cm}\n\\begin{center}")
+    print("\\begin{tabular}{ |c|m{15cm}| } ")
+    print("\\hline")
+    print("topic & top 20 words \\\\")
+    print("\\hline")
+    for idx, topic in enumerate(term_topic_mixture):
+        sorted_topics=sorted(topic.items(), key=lambda x: x[1], reverse=True)
+        print("%s & " % idx, end="")
+        for term in sorted_topics[:20]:
+            print(term[0], end=', ')
+        print("\\\\\n\\hline")
+    print("\\end{tabular}")
+    print("\\caption{Top 20 words for each topic with %d topics}"%len(term_topic_mixture))
+    print("\\label{top_terms_%d}"%len(term_topic_mixture))
+    print("\\end{center}\n\\end{adjustwidth}\n\\end{table}")
 
-    plot_topic_distribution(documents)
+
+if __name__ == "__main__":
+    #print("done")
+    # plt.rc('font', size=18)
+    with open('obj/term_topic_mixture_20.pkl', 'rb') as file:
+         documents = pickle.load(file)
+    printLatexTable(documents)
+    # plot_topic_distribution(documents)
