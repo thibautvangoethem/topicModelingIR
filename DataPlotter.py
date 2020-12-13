@@ -56,12 +56,12 @@ def plot_topic_distribution(document_topic_mixture):
         topic_count_distribution[max_topic] += 1
 
     plt.figure(figsize=(16, 7), dpi=160)
-    plt.bar(x=range(topic_count), height=topic_count_distribution)
+    plt.bar(x=range(1, topic_count+1), height=topic_count_distribution)
     plt.gca().set(ylabel='Number of Documents', xlabel='Topic')
     if topic_count > 20:
         plt.xticks(np.linspace(0, topic_count, 11))
     else:
-        plt.xticks(range(topic_count))
+        plt.xticks(range(1, topic_count+1))
     plt.title("Number of documents per topic for %d topics"%topic_count, fontdict=dict(size=22))
     plt.show()
 
@@ -74,7 +74,7 @@ def printLatexTable(term_topic_mixture):
     print("\\hline")
     for idx, topic in enumerate(term_topic_mixture):
         sorted_topics=sorted(topic.items(), key=lambda x: x[1], reverse=True)
-        print("%s & " % idx, end="")
+        print("%s & " % (idx+1), end="")
         for term in sorted_topics[:20]:
             print(term[0], end=', ')
         print("\\\\\n\\hline")
@@ -84,10 +84,36 @@ def printLatexTable(term_topic_mixture):
     print("\\end{center}\n\\end{adjustwidth}\n\\end{table}")
 
 
+def printLatexTableFor50(term_topic_mixture):
+    print("\\begin{table}[h!]\n\\begin{adjustwidth}{-5cm}{-5cm}\n\\begin{center}")
+    print("\\begin{tabular}{ |c|m{7.5cm}|c|m{7.5cm}| }")
+    print("\\hline")
+    print("topic & top 10 words & topic & top 10 words\\\\")
+    print("\\hline")
+    for i in range(25):
+        j = i+25
+        topic1 = term_topic_mixture[i]
+        topic2 = term_topic_mixture[j]
+        sorted_topics1 = sorted(topic1.items(), key=lambda x: x[1], reverse=True)
+        sorted_topics2 = sorted(topic2.items(), key=lambda x: x[1], reverse=True)
+        print("%s & " % (i + 1), end="")
+        for term in sorted_topics1[:10]:
+            print(term[0], end=', ')
+        print("& %s & " % (j + 1), end="")
+        for term in sorted_topics2[:10]:
+            print(term[0], end=', ')
+        print("\\\\\n\\hline")
+    print("\\end{tabular}")
+    print("\\caption{Top 10 words for each topic with %d topics}" % len(term_topic_mixture))
+    print("\\label{top_terms_%d}" % len(term_topic_mixture))
+    print("\\end{center}\n\\end{adjustwidth}\n\\end{table}")
+
+
+
 if __name__ == "__main__":
     #print("done")
-    # plt.rc('font', size=18)
-    with open('obj/term_topic_mixture_20.pkl', 'rb') as file:
+    plt.rc('font', size=18)
+    with open('obj/document_topic_mixture_topics_10_topics_improved.pkl', 'rb') as file:
          documents = pickle.load(file)
-    printLatexTable(documents)
-    # plot_topic_distribution(documents)
+    plot_topic_distribution(documents)
+    #plot_topic_distribution(documents)

@@ -81,12 +81,21 @@ def removeCommonWords(documents):
 
 
 def print_top_words(model, feature_names, n_top_words):
+    print("\\begin{table}[h!]\n\\begin{adjustwidth}{-5cm}{-5cm}\n\\begin{center}")
+    print("\\begin{tabular}{ |c|m{15cm}| } ")
+    print("\\hline")
+    print("topic & top 20 words \\\\")
+    print("\\hline")
     for topic_idx, topic in enumerate(model.components_):
-        message = "Topic #%d: " % topic_idx
-        message += " ".join([feature_names[i]
-                             for i in topic.argsort()[:-n_top_words - 1:-1]])
-        print(message)
-    print()
+        print("%d & " % (topic_idx+1), end="")
+        words = [feature_names[i] for i in topic.argsort()[:-n_top_words - 1:-1]]
+        for word in words:
+            print(word, end=", ")
+        print("\\\\\n\\hline")
+    print("\\end{tabular}")
+    print("\\caption{Top 20 words for each topic with %d topics}" % 10)
+    print("\\label{top_terms_%d}" % 10)
+    print("\\end{center}\n\\end{adjustwidth}\n\\end{table}")
 
 
 if __name__ == "__main__":
@@ -95,7 +104,7 @@ if __name__ == "__main__":
     data, removed = removeCommonWords(data)
     wordSet = wordSet - removed
     print("common words removed, start building corpus")
-    topicSize = 20
+    topicSize = 10
     # Don't know this one yet
     vocabularySize = "?"
     # Here we need to sanitize our data

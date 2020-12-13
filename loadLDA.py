@@ -31,10 +31,10 @@ def createCSV(document_topic_mixture, blackList, nb_documents=100):
 
 if __name__ == "__main__":
 
-    with open('obj/document_topic_mixture_20.pkl', 'rb') as file:
+    with open('obj/document_topic_mixture_topics_10_topics_improved.pkl', 'rb') as file:
         document_topic_mixture = pickle.load(file)
 
-    with open('obj/term_topic_mixture_20.pkl', 'rb') as file:
+    with open('obj/term_topic_mixture_topics_10_topics_improved.pkl', 'rb') as file:
         term_topic_mixture = pickle.load(file)
 
     with open('obj/documents.pkl', 'rb') as file:
@@ -56,4 +56,4 @@ if __name__ == "__main__":
         for term in sorted_topics[:20]:
             print(term[0], end=', ')
         print("")
-    createCSV(document_topic_mixture, blackList)
+    #createCSV(document_topic_mixture, blackList)
