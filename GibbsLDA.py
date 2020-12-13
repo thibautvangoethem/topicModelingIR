@@ -2,34 +2,45 @@ import csv
 import random
 import re
 import pickle
-from time import sleep, perf_counter as pc
+from time import perf_counter as pc
 from operator import itemgetter
+# Base implementations gotten from
 # http://www.arbylon.net/publications/text-est2.pdf#equation.1.5.78
 
-
+# Regex expression to remove all non alphabet/numbers characters
 removeNonAlphabet=re.compile('[\W_]+', re.UNICODE)
+# The wordset V that will contain all terms
 wordSet=set()
+# Seed is set so we can get reproducible results over multiple runs
 random.seed(0)
+# Both hyperparameters alpha and beta, these are not arrays in our implementation as we have chosen to let them be equal for each topic/term
 alpha = 1/10
 beta = 1/10000
+# The top percentage of words we cut (1=100%, 0=0%, 0.01=1%)
 cut_common_word_percentage = 0.01
 # stops the gibs sampling after less than this amount of topics have been changed since last sample
 switched_word_cutoff = 0.98
 
-# This list will be later used to take a subsection froma nd randomly choose an index according to weights
+# This list will be later used to take a subsection from and randomly choose an index according to weights
 index_list=list()
-
+# Global list used to store preculculations of the beta sum
 precalc_beta=list()
+
 def readStopword():
+    """
+    Reads stopwords from the txt file in the data directory
+    :return: a list of stopwords in string formate
+    """
     with open('data/stopwords.txt', "r") as stopFile:
         stopwords=stopFile.read().split("\n")
         return stopwords
-
-
 stopwords=readStopword()
 
-
 def simpleDataReader():
+    """
+    Iterates over a dataset and sanitise the data
+    :return: a list of documents, which are a list of words
+    """
     data=list()
     with open('data/news_dataset.csv', newline='\n', encoding="utf8") as csvfile:
         reader = csv.DictReader(csvfile)
@@ -39,7 +50,12 @@ def simpleDataReader():
 
 
 def sanitiseData(data):
-
+    """
+    Removes stopwords, non alphabetic characters, digits , "'s", also puts everything in lower case
+    Ends up returing the input split on whitespace
+    :param data: a string containg words
+    :return: a list of string
+    """
     splitted=data.split(" ")
     removedStopWord = [removeNonAlphabet.sub('', removePossessive(word)).lower()
                        for word in splitted if word.lower()
@@ -50,6 +66,11 @@ def sanitiseData(data):
 
 
 def removePossessive(word):
+    '''
+    Removes possessive 's
+    :param word: a string
+    :return: a string without possessive
+    '''
     word=word.replace("'s", '')
     word=word.replace("’s", '')
     return word
@@ -58,6 +79,14 @@ wordlist=dict()
 
 
 def removeCommonAndUniqueWords(documents):
+    """
+    Goes through the entire document and removes words based on different criteria:
+    - Remove all words that only appear in less then 10 document
+    - Remove all words that are in the top 1% used
+    - Remove all words that are used in more than 40% of the documents
+    :param documents: a list of documents
+    :return: a list of documents, with certain words removed
+    """
     wordlist = dict()
     nb_document_per_word = dict()
     total_documents = len(documents)
@@ -94,6 +123,12 @@ def removeCommonAndUniqueWords(documents):
     return new_document, toremove
 
 def gibbsLDA(amount_of_topics,document_list):
+    """
+    The base function of the LDA algorithm
+    :param amount_of_topics: the K, or amount of topics that will be chosen
+    :param document_list: a list of documents, which are a list of words
+    :return: nothing, everything will be printed, and save in pkl files in the obj directory
+    """
     # initialisation
     alpha_sum = alpha * amount_of_topics
     for i in range(amount_of_topics):
@@ -326,15 +361,23 @@ def calculateDocumentTopixMixture(amount_of_topics, document_list, document_topi
 
 
 if __name__ == "__main__":
+    # get current time
     t0 = pc()
+    # read data and sanitise to
     documents = simpleDataReader()
+    # Remove certain non usefull words
     documents, removed = removeCommonAndUniqueWords(documents)
-    with open('obj/documents.pkl', 'wb') as file:  # save pre-processed documents to file to be used by loadLDA.py
+    # save pre-processed documents to file to be used by loadLDA.py
+    with open('obj/documents.pkl', 'wb') as file:
         pickle.dump(documents, file)
     wordSet = wordSet - removed
+    # Define amount of topics
     amount_of_topics = 50
+    # Set hyperparameters to something more useful
     alpha = 1/amount_of_topics
     beta = 1/len(wordSet)
 
+    # Run the actual algorithm
     gibbsLDA(amount_of_topics, documents)
+    # Print time spent
     print(str(pc() - t0)+"s")

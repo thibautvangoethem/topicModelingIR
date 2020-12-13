@@ -406,3 +406,49 @@ topic 49: sweden, rouge, baton, sterling, boat, afghan, asylum, patrol, swedish,
 
 Process finished with exit code 0
 
+20 topics, common word filter on 0.01 and unique filter with document per topic, new calculations
+highest document chance per topic
+topic 0:24576 9274 64321 22753 30833 113954 30555 79178 60818 25689 90474 76375 15236 46560 103948 14743 12190 31162 21694 32254
+topic 1:43835 67616 62380 13836 60602 18642 17193 70987 66374 126761 25998 45440 127722 8801 52115 114386 64174 18885 26154 29507
+topic 2:113782 90094 108800 87918 115453 110506 68848 102560 113419 46917 113781 25007 106065 29410 69783 36596 80022 105753 106333 137002
+topic 3:47496 48255 121590 117327 14823 122031 125662 81058 120376 30368 45702 91789 123012 118715 44012 124484 91211 47517 124950 117279
+topic 4:64890 27888 24360 31454 70383 46155 22390 8310 98243 38881 68732 92872 13544 30958 21379 66328 8104 65611 64918 65854
+topic 5:35177 59884 47631 70777 11073 70252 8803 44219 87128 59471 90527 68062 45552 84464 20747 101004 62886 47608 110483 27095
+topic 6:88495 20982 23239 37529 15106 69704 63765 41516 66549 78668 70453 69748 89689 25722 19955 141101 39477 16871 86382 88443
+topic 7:122912 26281 35232 17802 78130 7988 65833 24880 11520 109291 84970 30933 49110 13414 48145 63821 35805 34842 26684 66537
+topic 8:67076 68666 77727 69009 83956 86851 54739 127463 30350 79729 102922 23495 23520 83432 10966 92590 14490 80638 92940 57991
+topic 9:58039 29131 61017 23065 138002 17795 34417 127945 15795 19489 61156 43518 59606 62085 66460 21570 46716 60356 112298 17344
+topic 10:70226 44025 14808 14493 88360 8767 35364 9299 28735 83367 8493 91466 44016 93554 12814 9282 29057 48469 94216 81214
+topic 11:24664 27900 28306 127249 60789 43127 61928 110899 258 62267 58337 60194 64343 118252 68412 34207 57180 47503 116670 131530
+topic 12:13317 65661 30744 16339 44896 13230 33316 86923 10669 12154 63269 9942 14438 10499 14746 65271 83326 93775 61459 13777
+topic 13:5965 44488 45625 48053 70658 47010 81421 71212 55136 47434 90924 86609 100434 42181 71224 93160 30848 22722 47229 64178
+topic 14:23109 19678 89239 45362 91185 58700 84271 35233 109790 66783 80315 46676 85525 42794 78775 91269 70717 67221 100107 21067
+topic 15:86423 104529 53048 140195 41164 54748 42093 8756 19450 90615 113140 35426 94947 130372 94097 128845 44475 35488 109280 1412
+topic 16:19246 70670 13201 37110 85301 6047 78920 91005 38938 87743 59124 48815 22243 34284 70623 7997 60084 63215 70613 7900
+topic 17:33702 66933 44212 2269 62751 133184 71280 82178 59908 62750 71256 44483 63591 62710 62506 8100 81619 44662 44707 63033
+topic 18:51969 22117 14130 51897 45384 44453 51900 64165 64190 20900 64313 27429 63624 57038 11380 13054 109340 65318 64118 99676
+topic 19:44861 113865 44242 45742 85714 82067 44541 48231 66750 134258 48003 47464 70094 67576 110774 47883 47184 49088 43702 49006
+top 20 words per topic
+topic 0: taliban, afghan, netanyahu, prize, universe, jerusalem, klein, journalism, palestinians, fiction, vietnam, nobel, slavery, enemies, dylan, essay, farc, literature, hero, holocaust,
+topic 1: netflix, musical, fisher, oscar, jokes, episodes, flint, colbert, taylor, melania, stewart, studio, hbo, celebrities, feminist, tv, jon, roles, parker, perry,
+topic 2: babies, pregnancy, cells, abortions, dna, diseases, outbreak, mosquitoes, genetic, mosquito, cdc, vaccine, infected, infection, microcephaly, mothers, gene, bacteria, symptoms, clinics,
+topic 3: stocks, index, equity, loans, sp, investor, corp, musk, regulators, hedge, investments, crude, trillion, profits, retail, banking, securities, shareholders, economists, recession,
+topic 4: whites, garland, latino, roberts, blacks, blasio, turnout, undocumented, beck, minorities, sanctuary, universities, wells, aliens, faculty, academic, spencer, equality, colleges, confederate,
+topic 5: murray, taiwan, tennis, castile, execution, zuckerberg, sterling, snapchat, gorka, arkansas, charlie, rouge, baton, executions, passenger, airline, inmates, bharara, slam, cameras,
+topic 6: mateen, jesus, memorial, gunman, relatives, pulse, visitors, nightclub, walls, clothes, fidel, drove, fort, glass, funeral, baton, wedding, shooter, rouge, santiago,
+topic 7: qatar, embassy, prisoners, jerusalem, netanyahu, hernandez, kingdom, qaeda, sunni, islamist, bin, torture, tehran, palestinians, abedin, assange, belgian, visa, recount, brotherhood,
+topic 8: brady, quarterback, giants, jets, patriots, manning, yards, missiles, cyber, hackers, rousseff, cooper, ballistic, pyongyang, defensive, temer, lynch, impeachment, offense, mccrory,
+topic 9: mitt, delegate, gingrich, lewandowski, presumptive, mate, yiannopoulos, electorate, caucuses, rnc, endorse, realdonaldtrump, palin, conservatism, msnbc, rallies, tpp, reid, pac, wallace,
+topic 10: yankees, mets, hurricane, turner, stadium, patrol, espn, pitch, cubs, wright, tournament, collins, medal, anthem, matthew, basketball, haiti, kaepernick, scored, championship,
+topic 11: devos, asylum, visa, visas, deportation, sweden, charter, istanbul, coup, detention, detained, humanitarian, des, somalia, mueller, requirements, civilian, les, tribe, baghdad,
+topic 12: cartel, insurers, aca, premiums, spanish, redstone, filibuster, nieto, farmers, soccer, pm, subsidies, peña, credits, farm, viacom, min, electors, espn, del,
+topic 13: samsung, phones, silicon, smartphone, microsoft, apps, virtual, computers, android, universities, robot, pokémon, technologies, machines, robots, battery, graduate, zuckerberg, engineering, smartphones,
+topic 14: puerto, boat, studio, woods, dance, rain, musical, disney, rebel, mountain, sky, trees, drone, tree, rico, festival, desert, jazz, homeless, shark,
+topic 15: cosby, addiction, depression, therapy, opioid, illness, stress, heroin, hiv, anxiety, symptoms, sexually, disorder, diagnosed, epidemic, trans, medication, fda, participants, prescription,
+topic 16: duterte, nasa, moon, warriors, nba, mars, philippines, knicks, rahami, thompson, basketball, curry, killings, explosion, shooter, gunman, rocket, rangers, cavaliers, orbit,
+topic 17: nunes, carbon, warming, pruitt, manafort, leaks, interference, associates, kremlin, nsa, contacts, schiff, pollution, kislyak, arctic, waters, exxon, temperatures, snowden, plants,
+topic 18: macron, labour, ailes, venezuela, eu, oreilly, socialist, cameron, maduro, dutch, corbyn, bundy, refuge, migration, chancellor, coup, oregon, bloc, fillon, nigeria,
+topic 19: foods, sugar, meat, restaurants, diet, drink, wine, chicken, fat, milk, cheese, beer, kitchen, taste, properties, drinks, lunch, cooking, chef, rent,
+6095.5693291s
+
+Process finished with exit code 0
