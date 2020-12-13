@@ -10,11 +10,11 @@ from operator import itemgetter
 removeNonAlphabet=re.compile('[\W_]+', re.UNICODE)
 wordSet=set()
 random.seed(0)
-alpha=1/10
-beta=1/10000
-cut_common_word_percentage=0.01
+alpha = 1/10
+beta = 1/10000
+cut_common_word_percentage = 0.01
 # stops the gibs sampling after less than this amount of topics have been changed since last sample
-switched_word_cutoff=0.98
+switched_word_cutoff = 0.98
 
 # This list will be later used to take a subsection froma nd randomly choose an index according to weights
 index_list=list()
@@ -48,12 +48,14 @@ def sanitiseData(data):
     wordSet.update(removedStopWord)
     return removedStopWord
 
+
 def removePossessive(word):
     word=word.replace("'s", '')
     word=word.replace("’s", '')
     return word
 
 wordlist=dict()
+
 
 def removeCommonAndUniqueWords(documents):
     wordlist = dict()
@@ -322,12 +324,15 @@ def calculateDocumentTopixMixture(amount_of_topics, document_list, document_topi
             document_topic_mixture[doc_idx][topic] = numerator / denominator
     return document_topic_mixture
 
+
 if __name__ == "__main__":
     t0 = pc()
     documents = simpleDataReader()
     documents, removed = removeCommonAndUniqueWords(documents)
+    with open('obj/documents.pkl', 'wb') as file:  # save pre-processed documents to file to be used by loadLDA.py
+        pickle.dump(documents, file)
     wordSet = wordSet - removed
-    amount_of_topics=50
+    amount_of_topics = 50
     alpha = 1/amount_of_topics
     beta = 1/len(wordSet)
 
