@@ -327,7 +327,7 @@ if __name__ == "__main__":
     documents = simpleDataReader()
     documents, removed = removeCommonAndUniqueWords(documents)
     wordSet = wordSet - removed
-    amount_of_topics=10
+    amount_of_topics=50
     alpha = 1/amount_of_topics
     beta = 1/len(wordSet)
 
